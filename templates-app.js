@@ -15,7 +15,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "			<option ng-click='castleSelect(value.id);'  ng-repeat='value in castles' value=\"{{value.id}}\">{{value.label}}</option>\n" +
     "		</select>	\n" +
     "	</div>\n" +
-    "	<div id='message' ng-model='message'>{{message}}</div>\n" +
+    "	<div id='message' ng-model='message'  ng-show='showMessage' class='message fadein fadeout'>{{message}}</div>\n" +
     "	<br /><br style=\"clear:both\" />\n" +
     "	<hr />\n" +
     "	<h3>Character's situation</h3>\n" +

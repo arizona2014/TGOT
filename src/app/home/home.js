@@ -31,16 +31,17 @@ angular.module( 'ngBoilerplate.home', [
         templateUrl: 'home/home.tpl.html'
       }
     },
-    data:{ pageTitle: 'Home' }
+    data:{ pageTitle: 'Games of Thrones Test' }
   });
 })
 
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'HomeCtrl', function HomeController( $scope ) {
+.controller( 'HomeCtrl', ['$scope', '$timeout', function HomeController( $scope , $timeout) {
 
 	$scope.message = "";
+    $scope.showMessage = false;
 	$scope.character = undefined;
 	$scope.castle = undefined;
 	$scope.Winterfell = [];
@@ -51,27 +52,117 @@ angular.module( 'ngBoilerplate.home', [
         {
             id: 1,       
 			group: "Starks",			
-            label: "Ned Stark",
+            label: "Eddard Stark",
 			castle: 0
         },
         {
             id: 2,
 			group: "Starks",			
-            label: "Catlyn Stark",
+            label: "Catelyn Stark",
 			castle: 0
         },
         {
-            id: 3,            
-			group: "Starks",			
-            label: "John Snow",
-			castle: 0
+            id: 3,
+            group: "Starks",
+            label: "Robb Stark",
+            castle: 0
         },
         {
             id: 4,
+            group: "Starks",
+            label: "Sansa Stark",
+            castle: 0
+        },
+        {
+            id: 5,
+            group: "Starks",
+            label: "Arya Stark",
+            castle: 0
+        },
+        {
+            id: 6,
+            group: "Starks",
+            label: "Bran Stark",
+            castle: 0
+        },
+        {
+            id: 7,
+			group: "Starks",			
+            label: "Jon Snow",
+			castle: 0
+        },
+        {
+            id: 8,
 			group: "Lanisters",			
             label: "Tywin Lanister",
 			castle: 0
-        }		
+        },
+        {
+            id: 9,
+            group: "Lanisters",
+            label: "Cersei Lanister",
+            castle: 0
+        },
+        {
+            id: 10,
+            group: "Lanisters",
+            label: "Jaime Lanister",
+            castle: 0
+        },
+        {
+            id: 11,
+            group: "Lanisters",
+            label: "Tyrion Lanister",
+            castle: 0
+        },
+        {
+            id: 12,
+            group: "Lanisters",
+            label: "Joffrey Baratheon",
+            castle: 0
+        },
+        {
+            id: 13,
+            group: "Lanisters",
+            label: "Myrcella Baratheon",
+            castle: 0
+        },
+        {
+            id: 14,
+            group: "Boltons",
+            label: "Roose Bolton",
+            castle: 0
+        },
+        {
+            id: 15,
+            group: "Boltons",
+            label: "Ramsay Bolton",
+            castle: 0
+        },
+        {
+            id: 16,
+            group: "Boltons",
+            label: "Reek",
+            castle: 0
+        },
+        {
+            id: 17,
+            group: "Boltons",
+            label: "Walda Bolton",
+            castle: 0
+        },
+        {
+            id: 18,
+            group: "Freys",
+            label: "Walder Frey",
+            castle: 0
+        },
+        {
+            id: 19,
+            group: "Freys",
+            label: "Lothar Frey",
+            castle: 0
+        }
 	];
 
 	$scope.castles = [
@@ -81,12 +172,36 @@ angular.module( 'ngBoilerplate.home', [
         },
         {
             id: 2,			
-            label: "Port Real"
+            label: "Harrenhal"
         },
         {
             id: 3,
-            label: "Meereen"
-        }		
+            label: "Casterly Rock"
+        },
+        {
+            id: 4,
+            label: "Dragonstone"
+        },
+        {
+            id: 5,
+            label: "Harrenhal"
+        },
+        {
+            id: 6,
+            label: "Moat Cailin"
+        },
+        {
+            id: 7,
+            label: "Castle Black"
+        },
+        {
+            id: 8,
+            label: "Highgarden"
+        },
+        {
+            id: 9,
+            label: "The Dreadfort"
+        }
 	];
 
 	$scope.deleteCharacter = function(castle,character)
@@ -193,10 +308,12 @@ angular.module( 'ngBoilerplate.home', [
 				}
 				$scope.characters[$scope.character-1].castle = 1;
 				$scope.message = moveLabel + " was successfully assigned to " + $scope.castles[$scope.castle - 1].label;
+                $scope.showMessage = true;
 			}
 			else
 			{
 				$scope.message = moveLabel + " wasn't assigned to " + $scope.castles[$scope.castle - 1].label + " because its already there :P ";
+                $scope.showMessage = true;
 			}
 		}
 		
@@ -216,10 +333,12 @@ angular.module( 'ngBoilerplate.home', [
 				}			
 				$scope.characters[$scope.character-1].castle = 2;
 				$scope.message = moveLabel + " was successfully assigned to " + $scope.castles[$scope.castle - 1].label;
+                $scope.showMessage = true;
 			}
 			else
 			{
 				$scope.message = moveLabel + " wasn't assigned to " + $scope.castles[$scope.castle - 1].label + " because its already there :P ";
+                $scope.showMessage = true;
 			}
 			
 		}
@@ -240,15 +359,26 @@ angular.module( 'ngBoilerplate.home', [
 				}				
 				$scope.characters[$scope.character-1].castle = 3;
 				$scope.message = moveLabel + " was successfully assigned to " + $scope.castles[$scope.castle - 1].label;
+                $scope.showMessage = true;
 			}
 			else
 			{
 				$scope.message = moveLabel + " wasn't assigned to " + $scope.castles[$scope.castle - 1].label + " because its already there :P ";
+                $scope.showMessage = true;
 			}
 			
-		}				
+		}
+
+        $timeout(function()
+        {
+
+            $timeout(function() {
+                $scope.showMessage = false;
+            }, 3000);
+
+        }, 2000);
 
 	}; 
 	
-});
+}]);
 
